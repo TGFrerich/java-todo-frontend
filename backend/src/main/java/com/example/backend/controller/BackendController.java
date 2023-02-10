@@ -21,11 +21,14 @@ public class BackendController {
 
     @PostMapping("todo")
     public Todo addTodo(@RequestBody Todo todo) {
-        todoService.getTodoRepository().addToDo(todo);
-        return todo;
+        return todoService.addTodo(todo);
     }
-//    @GetMapping("todo")
-//    public String getAllTodos(){
-//        todoService.getTodoRepository().toString();
-//    }
+    @GetMapping("todo")
+    public List<Todo> getAllTodos(){
+        return todoService.getTodoRepository().getTodoList();
+    }
+    @GetMapping("todo/{id}")
+    public Todo getTodoById(@PathVariable String id) {
+        return todoService.getTodoById(id);
+    }
 }

@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -13,17 +14,19 @@ import java.util.UUID;
 
 public class TodoRepository {
 
-    private Map<String, Todo> todoList;
+    private Map<String, Todo> todoList = new HashMap<>();
 
-    public TodoRepository(Map<String, Todo> todoList) {
-        this.todoList = todoList;
-    }
 
     public Todo addToDo(Todo todo){
-        todoList.put(UUID.randomUUID().toString(),todo);
+
+        todoList.put(todo.id(),todo );
         return todo;
     }
-    public String getTodoList(){
-        return new String(todoList.toString());
+    public List<Todo> getTodoList(){
+        return todoList.values().stream().toList();
+    }
+
+    public Todo getTodoById(String id) {
+        return todoList.get(id);
     }
 }

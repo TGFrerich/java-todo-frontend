@@ -10,15 +10,24 @@ import org.springframework.stereotype.Service;
 public class TodoService {
 
     private final TodoRepository todoRepository;
+    private final IdService idService;
 
-    public TodoService(TodoRepository todoRepository){
+    public TodoService(TodoRepository todoRepository, IdService idService){
         this.todoRepository = todoRepository;
+        this.idService = idService;
 
     }
     public Todo addTodo(Todo todo) {
-        Todo todoToAdd = new Todo(todo.description(),
+        String id = idService.generateId();
+        System.out.println(id);
+        Todo todoToAdd = new Todo(id, todo.description(),
                 todo.status());
-        todoRepository.addToDo(todoToAdd);
-        return todo;
+        return todoRepository.addToDo(todoToAdd);
+
     }
+
+    public Todo getTodoById(String id) {
+        return todoRepository.getTodoById(id);
+    }
+
 }
