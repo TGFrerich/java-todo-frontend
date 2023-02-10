@@ -31,4 +31,13 @@ public class BackendController {
     public Todo getTodoById(@PathVariable String id) {
         return todoService.getTodoById(id);
     }
+    @PutMapping ("todo/{id}")
+    public Todo putTodo(@PathVariable String id, @RequestBody Todo todo){
+        return todoService.putTodo(id, todo);
+    }
+
+    @DeleteMapping("todo/{id}")
+    public Todo deleteTodo(@PathVariable String id) {
+        return todoService.deleteTodo(id);
+    }
 }

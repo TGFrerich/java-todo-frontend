@@ -30,4 +30,11 @@ public class TodoService {
         return todoRepository.getTodoById(id);
     }
 
+    public Todo putTodo(String id, Todo todo) {
+        return todoRepository.putTodo(id, todo);
+    }
+
+    public Todo deleteTodo(String id) {
+        return todoRepository.deleteTodo(id);
+    }
 }
